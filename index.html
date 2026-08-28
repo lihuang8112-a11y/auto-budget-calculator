@@ -51,7 +51,7 @@
     input.addEventListener('input',()=>{const term=input.value.trim().toLowerCase();let visible=0;cards.forEach(card=>{const match=!term||card.dataset.keywords.toLowerCase().includes(term)||card.textContent.toLowerCase().includes(term);card.style.display=match?'flex':'none';if(match)visible++});count.textContent=visible+' 项';empty.style.display=visible?'none':'block'});
   </script>
   <script>
-    (()=>{const KEY='lh_site_access_v1',SALT='4ba2820127811a072b5a71d9a573c5a6',EXPECTED='2280eab11352a40ac277d54a154ce13ad6e989c024ebe1362365a2a96f881f0d',ITERATIONS=60000;
+    (()=>{const KEY='lh_site_access_v2',SALT='2448462f8d5b6637359a819005873cf2',EXPECTED='849652808ac3fa84076ba99317606838da05d8cd8a707a2296ea9b4887f10858',ITERATIONS=60000;
       const unlock=()=>{document.documentElement.classList.remove('access-locked');document.getElementById('accessGate').hidden=true};
       if(sessionStorage.getItem(KEY)===EXPECTED){unlock();return}
       const form=document.getElementById('accessForm'),field=document.getElementById('accessPassword'),button=document.getElementById('accessSubmit'),error=document.getElementById('accessError');
