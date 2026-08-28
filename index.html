@@ -3,54 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="lihuangkj.cn 在线工具中心">
-  <title>在线工具中心｜lihuangkj.cn</title>
+  <meta name="description" content="李煌科技在线经营工具中心">
+  <title>经营工具｜lihuangkj.cn</title>
   <style>
-    :root{color-scheme:light;--ink:#162033;--muted:#687386;--blue:#4059e8;--line:#e5e9f2;--panel:#fff;--bg:#f5f7fb}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg)}
-    .wrap{width:min(1080px,calc(100% - 40px));margin:auto}
-    header{height:72px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(255,255,255,.9)}
-    .brand{font-size:18px;font-weight:750;letter-spacing:.2px}
-    main{padding:72px 0 90px}
-    .eyebrow{display:inline-flex;padding:7px 12px;border-radius:999px;background:#e9edff;color:#3049d8;font-size:13px;font-weight:700}
-    h1{max-width:760px;margin:22px 0 16px;font-size:clamp(36px,6vw,64px);line-height:1.08;letter-spacing:-1.8px}
-    .lead{max-width:650px;margin:0;color:var(--muted);font-size:18px;line-height:1.8}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:52px}
-    .card{display:flex;flex-direction:column;min-height:270px;padding:30px;border:1px solid var(--line);border-radius:24px;background:var(--panel);box-shadow:0 16px 42px rgba(28,39,76,.07)}
-    .icon{display:grid;width:52px;height:52px;place-items:center;border-radius:16px;background:#eef1ff;color:var(--blue);font-size:25px}
-    h2{margin:24px 0 10px;font-size:24px}
-    .card p{margin:0 0 26px;color:var(--muted);line-height:1.7}
-    .button{display:inline-flex;align-items:center;justify-content:center;width:max-content;margin-top:auto;padding:12px 18px;border-radius:12px;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;transition:.18s ease}
-    .button:hover{transform:translateY(-1px);background:#3049d8}
-    .soon{background:linear-gradient(135deg,#fafbff,#f2f4fa)}
-    .soon .icon{background:#edf0f5;color:#7d8797}
-    .tag{width:max-content;margin-top:auto;padding:8px 12px;border-radius:10px;background:#eef0f4;color:#7a8494;font-size:13px;font-weight:650}
-    footer{padding:24px 0 34px;border-top:1px solid var(--line);color:#8a93a2;font-size:13px}
-    @media(max-width:720px){header{height:64px}main{padding:50px 0 64px}.wrap{width:min(100% - 28px,1080px)}.grid{grid-template-columns:1fr;margin-top:36px}h1{letter-spacing:-1px}.card{min-height:245px}}
+    :root{color-scheme:light;--green:#087a62;--ink:#17221f;--muted:#6f7c77;--line:#dce4df;--bg:#f7f9f7;--card:#fff;--amber:#f3b33b}
+    *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;color:var(--ink);background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:inherit}
+    .shell{width:min(1280px,calc(100% - 48px));margin:auto}
+    header{height:108px;border-top:2px solid #edf1ee;border-bottom:1px solid var(--line);background:rgba(255,255,255,.96)}
+    .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:16px;min-width:0}.logo{display:grid;width:58px;height:58px;flex:0 0 auto;place-items:center;border-radius:12px;background:linear-gradient(145deg,#0a8b6e,#066550);color:#fff;box-shadow:0 15px 32px rgba(8,122,98,.2);font-size:21px;font-weight:800;letter-spacing:-1px}
+    .brand-name{font-size:clamp(22px,3vw,32px);font-weight:780;letter-spacing:-1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.domain{color:var(--green);font-weight:750;letter-spacing:.2px}
+    main{padding:66px 0 54px}.tools-head{display:flex;align-items:center;justify-content:space-between;gap:28px;margin-bottom:28px}
+    .section-title{display:flex;align-items:center;gap:14px;margin:0;font-size:23px}.section-title:before{content:"";width:5px;height:29px;border-radius:6px;background:var(--amber)}.count{color:var(--muted);font-size:15px;font-weight:600}
+    .search{position:relative;width:min(100%,330px)}.search:before{content:"⌕";position:absolute;left:18px;top:50%;transform:translateY(-54%);color:#60716a;font-size:29px;line-height:1;pointer-events:none}.search input{width:100%;height:54px;padding:0 18px 0 52px;border:1px solid var(--line);border-radius:10px;outline:0;background:#fff;color:var(--ink);box-shadow:0 12px 28px rgba(28,47,40,.05);font:inherit;font-size:16px}.search input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(8,122,98,.1)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.tool-card{position:relative;display:flex;min-height:190px;align-items:center;gap:20px;padding:32px 34px;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:0 18px 44px rgba(30,50,42,.08);text-decoration:none;overflow:hidden;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}.tool-card:before{content:"";position:absolute;top:0;left:24px;right:24px;height:4px;border-radius:0 0 5px 5px;background:var(--accent,var(--amber))}.tool-card:hover,.tool-card:focus-visible{transform:translateY(-3px);border-color:#c5d5ce;box-shadow:0 24px 52px rgba(30,50,42,.12);outline:0}
+    .icon-box{position:relative;display:grid;width:82px;height:82px;flex:0 0 auto;place-items:center;border:1px solid #d8eae4;border-radius:14px;background:#eaf7f2;color:var(--green)}.calc-icon{width:34px;height:42px;border:4px solid currentColor;border-radius:6px;padding:5px}.calc-icon:before{content:"";display:block;height:7px;margin-bottom:5px;border:2px solid currentColor;border-radius:2px}.calc-icon:after{content:"•••\A•••";display:block;white-space:pre;text-align:center;font-size:12px;line-height:10px;letter-spacing:2px}.dot{position:absolute;right:8px;bottom:8px;width:17px;height:17px;border:3px solid #fff;border-radius:50%;background:#e96555}
+    .tool-copy{min-width:0}.meta{display:block;margin-bottom:12px;color:var(--green);font-size:15px;font-weight:750}.tool-name{margin:0;font-size:23px;line-height:1.45;letter-spacing:-.3px}.arrow{margin-left:auto;color:#6f7d77;font-size:34px;font-weight:300;line-height:1}.empty{display:none;grid-column:1/-1;padding:44px;border:1px dashed #ccd7d2;border-radius:12px;color:var(--muted);text-align:center}
+    footer{padding:28px 0 44px;color:#78857f;font-size:14px}footer strong{color:var(--green)}
+    @media(max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:680px){.shell{width:min(100% - 28px,1280px)}header{height:84px}.logo{width:48px;height:48px;font-size:18px}.brand-name{font-size:21px}.domain{display:none}main{padding:42px 0}.tools-head{align-items:stretch;flex-direction:column;margin-bottom:20px}.search{width:100%}.grid{grid-template-columns:1fr}.tool-card{min-height:164px;padding:26px 24px}.icon-box{width:68px;height:68px}.tool-name{font-size:20px}}
   </style>
 </head>
 <body>
-  <header><div class="wrap brand">lihuangkj.cn · 在线工具中心</div></header>
-  <main class="wrap">
-    <span class="eyebrow">实用工具</span>
-    <h1>让预算测算更清楚、更简单</h1>
-    <p class="lead">集中管理常用业务工具。无需安装软件，打开网页即可使用。</p>
-    <section class="grid" aria-label="工具列表">
-      <article class="card">
-        <div class="icon" aria-hidden="true">↗</div>
-        <h2>自动提升预算计算器</h2>
-        <p>根据初始预算、单次提升幅度和修改次数，计算每次预算变化、最终预算以及累计可能花费。</p>
-        <a class="button" href="/calculator/">打开计算器&nbsp; →</a>
-      </article>
-      <article class="card soon">
-        <div class="icon" aria-hidden="true">＋</div>
-        <h2>更多工具</h2>
-        <p>后续工具可以继续发布到同一个网站，并在这里统一进入。</p>
-        <span class="tag">持续更新</span>
-      </article>
+  <header><div class="shell header-inner"><div class="brand"><div class="logo" aria-hidden="true">李煌</div><div class="brand-name">李煌科技 · 工具中心</div></div><div class="domain">lihuangkj.cn</div></div></header>
+  <main class="shell">
+    <div class="tools-head"><h1 class="section-title">经营工具 <span class="count" id="count">1 项</span></h1><label class="search"><span style="position:absolute;clip:rect(0,0,0,0)">搜索工具</span><input id="search" type="search" placeholder="搜索工具" autocomplete="off"></label></div>
+    <section class="grid" id="toolGrid" aria-label="经营工具列表">
+      <a class="tool-card" href="/calculator/" data-keywords="自动 提升 预算 计算器 投放 花费"><div class="icon-box" aria-hidden="true"><div class="calc-icon"></div><i class="dot"></i></div><div class="tool-copy"><span class="meta">投放 · 预算</span><h2 class="tool-name">自动提升<br>预算计算器</h2></div><span class="arrow" aria-hidden="true">›</span></a>
+      <div class="empty" id="empty">没有找到相关工具</div>
     </section>
   </main>
-  <footer><div class="wrap">© 2026 lihuangkj.cn</div></footer>
+  <footer class="shell"><strong>lihuangkj.cn</strong>&nbsp; · &nbsp;李煌科技工具中心</footer>
+  <script>
+    const input=document.getElementById('search'),cards=[...document.querySelectorAll('.tool-card')],count=document.getElementById('count'),empty=document.getElementById('empty');
+    input.addEventListener('input',()=>{const term=input.value.trim().toLowerCase();let visible=0;cards.forEach(card=>{const match=!term||card.dataset.keywords.toLowerCase().includes(term)||card.textContent.toLowerCase().includes(term);card.style.display=match?'flex':'none';if(match)visible++});count.textContent=visible+' 项';empty.style.display=visible?'none':'block'});
+  </script>
 </body>
 </html>
