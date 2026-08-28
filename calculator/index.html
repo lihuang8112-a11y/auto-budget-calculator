@@ -956,14 +956,11 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   &lt;div class=&quot;topline&quot;&gt;
     &lt;div&gt;&lt;h2&gt;自动提升预算计算器&lt;/h2&gt;&lt;p class=&quot;sub&quot;&gt;按每次提升后的预算继续复利计算&lt;/p&gt;&lt;/div&gt;
-    &lt;span class=&quot;status ok&quot; id=&quot;eligibility&quot;&gt;满足执行条件&lt;/span&gt;
   &lt;/div&gt;
 
   &lt;div class=&quot;controls&quot;&gt;
     &lt;label&gt;初始日预算&lt;div class=&quot;input-wrap&quot;&gt;&lt;input id=&quot;initial&quot; type=&quot;number&quot; value=&quot;1000&quot; min=&quot;0&quot; step=&quot;100&quot;&gt;&lt;span class=&quot;unit&quot;&gt;元&lt;/span&gt;&lt;/div&gt;&lt;/label&gt;
     &lt;label&gt;单次提升幅度&lt;div class=&quot;input-wrap&quot;&gt;&lt;input id=&quot;rate&quot; type=&quot;number&quot; value=&quot;10&quot; min=&quot;0&quot; max=&quot;500&quot; step=&quot;1&quot;&gt;&lt;span class=&quot;unit&quot;&gt;%&lt;/span&gt;&lt;/div&gt;&lt;/label&gt;
-    &lt;label&gt;当天预算花费率&lt;div class=&quot;input-wrap&quot;&gt;&lt;input id=&quot;spendRate&quot; type=&quot;number&quot; value=&quot;70&quot; min=&quot;0&quot; step=&quot;1&quot;&gt;&lt;span class=&quot;unit&quot;&gt;%&lt;/span&gt;&lt;/div&gt;&lt;/label&gt;
-    &lt;label&gt;当天投入产出比&lt;div class=&quot;input-wrap&quot;&gt;&lt;input id=&quot;roas&quot; type=&quot;number&quot; value=&quot;2&quot; min=&quot;0&quot; step=&quot;0.1&quot;&gt;&lt;span class=&quot;unit&quot;&gt;ROAS&lt;/span&gt;&lt;/div&gt;&lt;/label&gt;
     &lt;label&gt;最多修改次数&lt;div class=&quot;input-wrap&quot;&gt;&lt;input id=&quot;maxChanges&quot; type=&quot;number&quot; value=&quot;8&quot; min=&quot;0&quot; max=&quot;100&quot; step=&quot;1&quot;&gt;&lt;span class=&quot;unit&quot;&gt;次&lt;/span&gt;&lt;/div&gt;&lt;/label&gt;
     &lt;div class=&quot;range-row&quot;&gt;
       &lt;div class=&quot;range-head&quot;&gt;&lt;label for=&quot;triggers&quot;&gt;实际触发次数&lt;/label&gt;&lt;strong id=&quot;triggerValue&quot;&gt;8 次&lt;/strong&gt;&lt;/div&gt;
@@ -989,25 +986,20 @@ html&gt;body{padding:0}&lt;/style&gt;
     (() =&gt; {
       const root = document.getElementById(&#x27;budget-calc-4cc9&#x27;);
       const q = id =&gt; root.querySelector(&#x27;#&#x27; + id);
-      const ids = [&#x27;initial&#x27;,&#x27;rate&#x27;,&#x27;spendRate&#x27;,&#x27;roas&#x27;,&#x27;maxChanges&#x27;,&#x27;triggers&#x27;];
+      const ids = [&#x27;initial&#x27;,&#x27;rate&#x27;,&#x27;maxChanges&#x27;,&#x27;triggers&#x27;];
       const money = n =&gt; new Intl.NumberFormat(&#x27;zh-CN&#x27;, {style:&#x27;currency&#x27;, currency:&#x27;CNY&#x27;, minimumFractionDigits:2}).format(Number.isFinite(n) ? n : 0);
       const superscript = n =&gt; String(n).split(&#x27;&#x27;).map(c =&gt; &#x27;⁰¹²³⁴⁵⁶⁷⁸⁹&#x27;[Number(c)]).join(&#x27;&#x27;);
       function calculate(changed) {
         const initial = Math.max(0, +q(&#x27;initial&#x27;).value || 0);
         const rate = Math.max(0, +q(&#x27;rate&#x27;).value || 0) / 100;
-        const spendRate = Math.max(0, +q(&#x27;spendRate&#x27;).value || 0);
-        const roas = Math.max(0, +q(&#x27;roas&#x27;).value || 0);
         const maxChanges = Math.max(0, Math.floor(+q(&#x27;maxChanges&#x27;).value || 0));
         const slider = q(&#x27;triggers&#x27;);
         slider.max = String(maxChanges);
         if (changed === &#x27;maxChanges&#x27; || +slider.value &gt; maxChanges) slider.value = String(maxChanges);
         const requested = Math.max(0, Math.min(maxChanges, Math.floor(+slider.value || 0)));
-        const eligible = spendRate &gt;= 70 &amp;&amp; roas &gt;= 2;
-        const effective = eligible ? requested : 0;
+        const effective = requested;
         const final = initial * Math.pow(1 + rate, effective);
         const delta = final - initial;
-        q(&#x27;eligibility&#x27;).textContent = eligible ? &#x27;满足执行条件&#x27; : &#x27;当前不满足条件&#x27;;
-        q(&#x27;eligibility&#x27;).className = &#x27;status &#x27; + (eligible ? &#x27;ok&#x27; : &#x27;no&#x27;);
         q(&#x27;triggerValue&#x27;).textContent = requested + &#x27; 次&#x27;;
         q(&#x27;finalBudget&#x27;).textContent = money(final);
         q(&#x27;increase&#x27;).textContent = money(delta);
@@ -1021,7 +1013,6 @@ html&gt;body{padding:0}&lt;/style&gt;
           html += `&lt;tr&gt;&lt;td&gt;第 ${i} 次提升&lt;/td&gt;&lt;td&gt;+${money(current - previous)}&lt;/td&gt;&lt;td&gt;${money(current)}&lt;/td&gt;&lt;/tr&gt;`;
           previous = current;
         }
-        if (!eligible) html += `&lt;tr&gt;&lt;td&gt;未触发&lt;/td&gt;&lt;td&gt;花费率需 ≥ 70%&lt;/td&gt;&lt;td&gt;ROAS 需 ≥ 2&lt;/td&gt;&lt;/tr&gt;`;
         q(&#x27;rows&#x27;).innerHTML = html;
       }
       ids.forEach(id =&gt; q(id).addEventListener(&#x27;input&#x27;, () =&gt; calculate(id)));
