@@ -978,7 +978,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;div class=&quot;results&quot;&gt;
     &lt;div class=&quot;metric primary&quot;&gt;&lt;span&gt;预计最终花费上限&lt;/span&gt;&lt;strong id=&quot;finalBudget&quot;&gt;¥2,143.59&lt;/strong&gt;&lt;/div&gt;
     &lt;div class=&quot;metric&quot;&gt;&lt;span&gt;不加预算预计销售额&lt;/span&gt;&lt;strong id=&quot;baselineSales&quot;&gt;¥2,000.00&lt;/strong&gt;&lt;/div&gt;
-    &lt;div class=&quot;metric&quot;&gt;&lt;span&gt;规则执行后预计销售额&lt;/span&gt;&lt;strong id=&quot;projectedSales&quot;&gt;¥3,858.46&lt;/strong&gt;&lt;/div&gt;
+    &lt;div class=&quot;metric&quot;&gt;&lt;span&gt;规则执行后预计总销售额&lt;/span&gt;&lt;strong id=&quot;projectedSales&quot;&gt;¥4,058.46&lt;/strong&gt;&lt;/div&gt;
   &lt;/div&gt;
 
   &lt;div class=&quot;track&quot;&gt;&lt;div class=&quot;fill&quot; id=&quot;fill&quot;&gt;&lt;/div&gt;&lt;/div&gt;
@@ -986,7 +986,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;div class=&quot;table-wrap&quot;&gt;
     &lt;div class=&quot;table-title&quot;&gt;&lt;strong&gt;逐次预算变化&lt;/strong&gt;&lt;span id=&quot;formula&quot;&gt;1000 × 1.1⁸&lt;/span&gt;&lt;/div&gt;
     &lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;阶段&lt;/th&gt;&lt;th&gt;本次增加&lt;/th&gt;&lt;th&gt;预算上限&lt;/th&gt;&lt;th&gt;计算投产比&lt;/th&gt;&lt;th&gt;预计销售额&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;rows&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;
-    &lt;p class=&quot;note&quot;&gt;当前投产达到或超过触发值时才执行预算提升。不加预算的销售额按当前投产计算；每次提升后的销售额统一按“提升后预测投入产出比”计算。预算按充分花完估算，且上调是替换原预算，不是累加各阶段预算。&lt;/p&gt;
+    &lt;p class=&quot;note&quot;&gt;当前投产达到或超过触发值时才执行预算提升。不加预算销售额＝初始预算 × 当前投产；每次提升后的预计总销售额＝不加预算销售额 ＋ 累计新增预算 × 提升后预测投产。预算按充分花完估算，且上调是替换原预算，不是累加各阶段预算。&lt;/p&gt;
   &lt;/div&gt;
 
   &lt;script&gt;
@@ -1011,7 +1011,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         const effective = eligible ? requested : 0;
         const final = initial * Math.pow(1 + rate, effective);
         const baselineSales = initial * currentRoas;
-        const projectedSales = effective &gt; 0 ? final * forecastRoas : baselineSales;
+        const projectedSales = effective &gt; 0 ? baselineSales + (final - initial) * forecastRoas : baselineSales;
         const status = q(&#x27;status&#x27;);
         status.textContent = eligible ? &#x27;达到触发条件&#x27; : &#x27;未达到触发条件&#x27;;
         status.className = &#x27;status &#x27; + (eligible ? &#x27;ok&#x27; : &#x27;no&#x27;);
@@ -1025,7 +1025,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         let previous = initial;
         for (let i = 1; i &lt;= effective; i++) {
           const current = initial * Math.pow(1 + rate, i);
-          html += `&lt;tr&gt;&lt;td&gt;第 ${i} 次提升&lt;/td&gt;&lt;td&gt;+${money(current - previous)}&lt;/td&gt;&lt;td&gt;${money(current)}&lt;/td&gt;&lt;td&gt;${forecastRoas.toFixed(2)}&lt;/td&gt;&lt;td&gt;${money(current * forecastRoas)}&lt;/td&gt;&lt;/tr&gt;`;
+          const stageSales = baselineSales + (current - initial) * forecastRoas;
+          html += `&lt;tr&gt;&lt;td&gt;第 ${i} 次提升&lt;/td&gt;&lt;td&gt;+${money(current - previous)}&lt;/td&gt;&lt;td&gt;${money(current)}&lt;/td&gt;&lt;td&gt;${forecastRoas.toFixed(2)}&lt;/td&gt;&lt;td&gt;${money(stageSales)}&lt;/td&gt;&lt;/tr&gt;`;
           previous = current;
         }
         q(&#x27;rows&#x27;).innerHTML = html;
