@@ -964,6 +964,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;div class=&quot;controls&quot;&gt;
     &lt;label&gt;初始日预算&lt;div class=&quot;input-wrap&quot;&gt;&lt;input id=&quot;initial&quot; type=&quot;number&quot; value=&quot;1000&quot; min=&quot;0&quot; step=&quot;100&quot;&gt;&lt;span class=&quot;unit&quot;&gt;元&lt;/span&gt;&lt;/div&gt;&lt;/label&gt;
     &lt;label&gt;单次提升幅度&lt;div class=&quot;input-wrap&quot;&gt;&lt;input id=&quot;rate&quot; type=&quot;number&quot; value=&quot;10&quot; min=&quot;0&quot; max=&quot;500&quot; step=&quot;1&quot;&gt;&lt;span class=&quot;unit&quot;&gt;%&lt;/span&gt;&lt;/div&gt;&lt;/label&gt;
+    &lt;label&gt;原本投入产出比&lt;div class=&quot;input-wrap&quot;&gt;&lt;input id=&quot;roas&quot; type=&quot;number&quot; value=&quot;2&quot; min=&quot;0&quot; step=&quot;0.1&quot;&gt;&lt;span class=&quot;unit&quot;&gt;ROAS&lt;/span&gt;&lt;/div&gt;&lt;/label&gt;
     &lt;label&gt;最多修改次数&lt;div class=&quot;input-wrap&quot;&gt;&lt;input id=&quot;maxChanges&quot; type=&quot;number&quot; value=&quot;8&quot; min=&quot;0&quot; max=&quot;100&quot; step=&quot;1&quot;&gt;&lt;span class=&quot;unit&quot;&gt;次&lt;/span&gt;&lt;/div&gt;&lt;/label&gt;
     &lt;div class=&quot;range-row&quot;&gt;
       &lt;div class=&quot;range-head&quot;&gt;&lt;label for=&quot;triggers&quot;&gt;实际触发次数&lt;/label&gt;&lt;strong id=&quot;triggerValue&quot;&gt;8 次&lt;/strong&gt;&lt;/div&gt;
@@ -973,28 +974,29 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   &lt;div class=&quot;results&quot;&gt;
     &lt;div class=&quot;metric primary&quot;&gt;&lt;span&gt;预计最终花费上限&lt;/span&gt;&lt;strong id=&quot;finalBudget&quot;&gt;¥2,143.59&lt;/strong&gt;&lt;/div&gt;
-    &lt;div class=&quot;metric&quot;&gt;&lt;span&gt;比初始预算增加&lt;/span&gt;&lt;strong id=&quot;increase&quot;&gt;¥1,143.59&lt;/strong&gt;&lt;/div&gt;
-    &lt;div class=&quot;metric&quot;&gt;&lt;span&gt;有效提升次数&lt;/span&gt;&lt;strong id=&quot;effective&quot;&gt;8 次&lt;/strong&gt;&lt;/div&gt;
+    &lt;div class=&quot;metric&quot;&gt;&lt;span&gt;不加预算预计销售额&lt;/span&gt;&lt;strong id=&quot;baselineSales&quot;&gt;¥2,000.00&lt;/strong&gt;&lt;/div&gt;
+    &lt;div class=&quot;metric&quot;&gt;&lt;span&gt;提升后预计销售额&lt;/span&gt;&lt;strong id=&quot;projectedSales&quot;&gt;¥4,287.18&lt;/strong&gt;&lt;/div&gt;
   &lt;/div&gt;
 
   &lt;div class=&quot;track&quot;&gt;&lt;div class=&quot;fill&quot; id=&quot;fill&quot;&gt;&lt;/div&gt;&lt;/div&gt;
 
   &lt;div class=&quot;table-wrap&quot;&gt;
     &lt;div class=&quot;table-title&quot;&gt;&lt;strong&gt;逐次预算变化&lt;/strong&gt;&lt;span id=&quot;formula&quot;&gt;1000 × 1.1⁸&lt;/span&gt;&lt;/div&gt;
-    &lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;阶段&lt;/th&gt;&lt;th&gt;本次增加&lt;/th&gt;&lt;th&gt;预算上限&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;rows&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;
-    &lt;p class=&quot;note&quot;&gt;最终花费上限按“预算被充分花完”估算；预算上调是替换原预算，不是把各阶段预算相加。截图显示次日 0–1 点会恢复执行前预算，因此这里按单日计算。&lt;/p&gt;
+    &lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;阶段&lt;/th&gt;&lt;th&gt;本次增加&lt;/th&gt;&lt;th&gt;预算上限&lt;/th&gt;&lt;th&gt;预计销售额&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;rows&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;
+    &lt;p class=&quot;note&quot;&gt;预算与销售额均按“预算被充分花完、投产保持不变”估算；预算上调是替换原预算，不是把各阶段预算相加。这里按单日计算。&lt;/p&gt;
   &lt;/div&gt;
 
   &lt;script&gt;
     (() =&gt; {
       const root = document.getElementById(&#x27;budget-calc-4cc9&#x27;);
       const q = id =&gt; root.querySelector(&#x27;#&#x27; + id);
-      const ids = [&#x27;initial&#x27;,&#x27;rate&#x27;,&#x27;maxChanges&#x27;,&#x27;triggers&#x27;];
+      const ids = [&#x27;initial&#x27;,&#x27;rate&#x27;,&#x27;roas&#x27;,&#x27;maxChanges&#x27;,&#x27;triggers&#x27;];
       const money = n =&gt; new Intl.NumberFormat(&#x27;zh-CN&#x27;, {style:&#x27;currency&#x27;, currency:&#x27;CNY&#x27;, minimumFractionDigits:2}).format(Number.isFinite(n) ? n : 0);
       const superscript = n =&gt; String(n).split(&#x27;&#x27;).map(c =&gt; &#x27;⁰¹²³⁴⁵⁶⁷⁸⁹&#x27;[Number(c)]).join(&#x27;&#x27;);
       function calculate(changed) {
         const initial = Math.max(0, +q(&#x27;initial&#x27;).value || 0);
         const rate = Math.max(0, +q(&#x27;rate&#x27;).value || 0) / 100;
+        const roas = Math.max(0, +q(&#x27;roas&#x27;).value || 0);
         const maxChanges = Math.max(0, Math.floor(+q(&#x27;maxChanges&#x27;).value || 0));
         const slider = q(&#x27;triggers&#x27;);
         slider.max = String(maxChanges);
@@ -1002,18 +1004,19 @@ html&gt;body{padding:0}&lt;/style&gt;
         const requested = Math.max(0, Math.min(maxChanges, Math.floor(+slider.value || 0)));
         const effective = requested;
         const final = initial * Math.pow(1 + rate, effective);
-        const delta = final - initial;
+        const baselineSales = initial * roas;
+        const projectedSales = final * roas;
         q(&#x27;triggerValue&#x27;).textContent = requested + &#x27; 次&#x27;;
         q(&#x27;finalBudget&#x27;).textContent = money(final);
-        q(&#x27;increase&#x27;).textContent = money(delta);
-        q(&#x27;effective&#x27;).textContent = effective + &#x27; 次&#x27;;
+        q(&#x27;baselineSales&#x27;).textContent = money(baselineSales);
+        q(&#x27;projectedSales&#x27;).textContent = money(projectedSales);
         q(&#x27;formula&#x27;).textContent = initial.toLocaleString(&#x27;zh-CN&#x27;) + &#x27; × &#x27; + (1 + rate).toFixed(2).replace(/0+$/,&#x27;&#x27;).replace(/\.$/,&#x27;&#x27;) + superscript(effective);
         q(&#x27;fill&#x27;).style.width = maxChanges ? Math.min(100, effective / maxChanges * 100) + &#x27;%&#x27; : &#x27;0%&#x27;;
-        let html = `&lt;tr&gt;&lt;td&gt;初始&lt;/td&gt;&lt;td&gt;—&lt;/td&gt;&lt;td&gt;${money(initial)}&lt;/td&gt;&lt;/tr&gt;`;
+        let html = `&lt;tr&gt;&lt;td&gt;不加预算&lt;/td&gt;&lt;td&gt;—&lt;/td&gt;&lt;td&gt;${money(initial)}&lt;/td&gt;&lt;td&gt;${money(baselineSales)}&lt;/td&gt;&lt;/tr&gt;`;
         let previous = initial;
         for (let i = 1; i &lt;= effective; i++) {
           const current = initial * Math.pow(1 + rate, i);
-          html += `&lt;tr&gt;&lt;td&gt;第 ${i} 次提升&lt;/td&gt;&lt;td&gt;+${money(current - previous)}&lt;/td&gt;&lt;td&gt;${money(current)}&lt;/td&gt;&lt;/tr&gt;`;
+          html += `&lt;tr&gt;&lt;td&gt;第 ${i} 次提升&lt;/td&gt;&lt;td&gt;+${money(current - previous)}&lt;/td&gt;&lt;td&gt;${money(current)}&lt;/td&gt;&lt;td&gt;${money(current * roas)}&lt;/td&gt;&lt;/tr&gt;`;
           previous = current;
         }
         q(&#x27;rows&#x27;).innerHTML = html;
