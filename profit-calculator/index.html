@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="推广方案利润测算与销量推进计算器">
+  <title>推广方案利润测算 · 李煌科技</title>
+  <style>
+    :root{--ink:#18352b;--muted:#66776f;--line:#dbe5df;--paper:#f5f8f6;--card:#fff;--accent:#1f7a54;--accent-dark:#15563d;--input:#fff7d6;--calc:#eef7f2;--warn:#fff1e9;--navy:#174238}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.page{width:min(1440px,calc(100% - 40px));margin:0 auto;padding:34px 0 64px}.back{display:inline-block;color:var(--accent);font-weight:700;text-decoration:none}.back:hover{text-decoration:underline}.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin:18px 0 22px}.eyebrow{margin:0;color:var(--accent);font-size:13px;font-weight:800;letter-spacing:.08em}.hero h1{margin:7px 0 5px;font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;line-height:1.15}.hero p{margin:0;color:var(--muted)}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.button{appearance:none;border:0;border-radius:9px;padding:11px 16px;background:var(--accent);color:#fff;font:inherit;font-weight:750;cursor:pointer}.button:hover{background:var(--accent-dark)}.button:disabled{cursor:wait;opacity:.68}.button.secondary{border:1px solid #bdd1c7;background:#fff;color:var(--accent)}.export-status{color:var(--muted);font-size:13px;min-width:0}.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 32px rgba(23,57,43,.06)}.guide{display:grid;grid-template-columns:1.15fr 1fr;gap:1px;overflow:hidden;background:var(--line)}.guide>div{padding:17px 20px;background:#fff}.guide strong{display:block;margin-bottom:4px}.guide span{color:var(--muted);font-size:14px}.legend{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.legend i{width:13px;height:13px;display:inline-block;border-radius:3px;vertical-align:-2px;margin-right:5px}.legend .input-key{background:var(--input);border:1px solid #ead58b}.legend .calc-key{background:var(--calc);border:1px solid #bcdbc9}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:28px 0 11px}.section-title{margin:0;font-size:20px}.table-wrap{overflow:auto}.model{min-width:1960px;border-collapse:separate;border-spacing:0;width:100%;font-size:13px}.model th,.model td{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px;white-space:nowrap;text-align:right}.model th{position:sticky;top:0;z-index:3;background:var(--navy);color:#fff;text-align:center;font-size:12px;line-height:1.25}.model th:first-child,.model td:first-child{position:sticky;left:0;z-index:2;text-align:left}.model th:first-child{z-index:4}.model tr:first-child th:first-child{border-top-left-radius:12px}.model tr:first-child th:last-child{border-top-right-radius:12px}.model td:first-child{background:#fff;font-weight:800;min-width:56px}.model td.calculated{background:var(--calc);color:#1d5d42;font-weight:650}.model td.input-cell{background:#fffdf5}.model input{width:92px;padding:7px 8px;border:1px solid #ead58b;border-radius:6px;background:var(--input);color:var(--ink);font:inherit;text-align:right;outline:none}.model input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(31,122,84,.13)}.model input[type=number]{appearance:textfield}.model input::-webkit-outer-spin-button,.model input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.formula-note{margin:10px 0 0;color:var(--muted);font-size:13px}.summary{padding:20px;margin-top:26px}.summary-head{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap}.summary h2{margin:0;font-size:20px}.summary p{margin:3px 0 0;color:var(--muted);font-size:14px}.summary-grid{display:grid;grid-template-columns:repeat(5,minmax(140px,1fr));gap:12px;margin-top:18px}.metric{padding:15px;border:1px solid var(--line);border-radius:10px;background:#fbfdfc}.metric span{display:block;color:var(--muted);font-size:13px}.metric strong{display:block;margin-top:5px;font-size:22px;letter-spacing:-.02em}.metric.profit{background:#eaf6ef;border-color:#abd1b9}.metric.warning{background:var(--warn);border-color:#efd5c7}.logic{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:20px;margin-top:18px}.logic h2{grid-column:1/-1;margin:0;font-size:20px}.logic p{margin:0;color:var(--muted);font-size:14px}.logic code{display:block;margin-top:7px;padding:9px;border-radius:7px;background:#f1f5f3;color:#215641;font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:normal}@media(max-width:760px){.page{width:min(100% - 26px,1440px);padding-top:22px}.hero{align-items:flex-start;flex-direction:column}.guide{grid-template-columns:1fr}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.logic{grid-template-columns:1fr}.model{font-size:12px}.model th,.model td{padding:6px}.model input{width:80px}}
+  </style>
+  <style>
+    .bulk{margin-top:18px;padding:20px}.bulk-head{display:flex;align-items:end;justify-content:space-between;gap:14px;flex-wrap:wrap}.bulk h2{margin:0;font-size:20px}.bulk p{margin:3px 0 0;color:var(--muted);font-size:14px}.batch-rows{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0 14px}.batch-rows label{display:flex;align-items:center;gap:4px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;color:var(--muted);font-size:13px}.batch-rows input{accent-color:var(--accent)}.batch-fields{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:10px}.batch-fields label{display:grid;gap:5px;color:var(--muted);font-size:13px}.batch-fields input,.summary-input{width:100%;padding:8px 9px;border:1px solid #ead58b;border-radius:6px;background:var(--input);color:var(--ink);font:inherit;text-align:right}.batch-actions{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap}.batch-actions span{color:var(--muted);font-size:13px}.model select{width:84px;padding:7px;border:1px solid #ead58b;border-radius:6px;background:var(--input);color:var(--ink);font:inherit}.model tfoot td{background:#fff6d8;font-weight:750}.model tfoot td.calculated{background:#e8f4ed}.model tfoot td:first-child{background:#ffe9a2;z-index:2}.model tfoot input{background:#fff}.summary-status{color:var(--muted);font-size:13px}@media(max-width:920px){.batch-fields{grid-template-columns:repeat(2,minmax(150px,1fr))}}@media(max-width:520px){.batch-fields{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="/">← 返回工具中心</a>
+    <header class="hero">
+      <div><p class="eyebrow">经营规划 · 利润测算</p><h1>推广方案利润测算</h1><p>按月填写经营假设，自动反推投放需求、销售额、成本与利润。</p></div>
+      <div class="actions"><button class="button secondary" id="clear">清空所有输入</button><button class="button" id="example">填入模板示例</button></div>
+    </header>
+    <section class="panel guide">
+      <div><strong>填写规则</strong><span>浅黄色为手动输入项；绿色为公式计算项。未填的输入不会显示为零，而是保留为空。</span></div>
+      <div class="legend"><span><i class="input-key"></i>需要填写</span><span><i class="calc-key"></i>自动计算</span></div>
+    </section>
+    <section class="panel bulk" aria-label="批量填写">
+      <div class="bulk-head"><div><h2>批量填写</h2><p>选择要应用的行，只填写需要统一复制的字段；留空字段不会覆盖已有数据。</p></div><div class="actions"><button class="button secondary" id="selectAllRows" type="button">全选行</button><button class="button secondary" id="clearRowSelection" type="button">清空选择</button></div></div>
+      <div class="batch-rows" id="batchRows"></div>
+      <div class="batch-fields" id="batchFields"></div>
+      <div class="batch-actions"><button class="button" id="applyBatch" type="button">应用到所选行</button><span id="batchStatus">请选择行并填写需要批量应用的字段。</span></div>
+    </section>
+    <div class="section-heading"><h2 class="section-title">月度测算</h2><div class="actions"><button class="button secondary" id="exportXlsx">导出 Excel</button><span class="export-status" id="exportStatus" role="status" aria-live="polite"></span></div></div>
+    <section class="panel table-wrap" aria-label="月度推广方案利润测算表"><table class="model"><thead id="head"></thead><tbody id="body"></tbody><tfoot id="footer"></tfoot></table></section>
+    <p class="formula-note">“产品售价”保留为原模板的手填字段；该模板的现有月度公式不引用它，销售额由“平均客单价”计算。</p>
+    <section class="panel summary">
+      <div class="summary-head"><div><h2>全年汇总结果</h2><p>汇总 1–12 月已填写的数据：销量、金额与访客数求和；免费销量占比、转化率、点击成本按月平均；指定经营参数保留手填。</p></div><span class="summary-status" id="summaryStatus"></span></div>
+      <div class="summary-grid" id="summary"></div>
+    </section>
+    <section class="panel logic">
+      <h2>计算逻辑</h2>
+      <div><p>流量与投放</p><code>真实销量 = 目标总销量 − BD销量<br>付费销量 = 真实销量 × (1 − 免费销量成交占比)<br>付费访客数 = 付费销量 ÷ 转化率<br>推广花费 = 付费访客数 × 平均点击成本</code></div>
+      <div><p>经营结果</p><code>真实销售额 = 真实销量 × 平均客单价<br>总投入 = 推广花费 + BD佣金<br>利润 = 真实销售额 − 总产品成本 − 总投入 − 总销售额×平台扣点 − 目标总销量×每单运费</code></div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+  <script>
+    const months=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+    const columns=[
+      ['target','目标总销量（含BD）','n'],['organic','免费销量成交占比','p'],['paid','付费销量','c'],['actual','真实销量','c'],['bd','BD销量','n'],['conversion','月平均转化率','p'],['cpc','平均点击成本','n'],['paidVisitors','付费访客数','c'],['totalVisitors','总访客','c'],['bdCommission','BD佣金','c'],['marketing','推广花费投入','c'],['commissionRate','BD单笔佣金','n'],['costPrice','产品成本价','n'],['salePrice','产品售价','n'],['aov','平均客单价','n'],['avgCost','平均每单成本价','n'],['totalRevenue','总销售额','c'],['actualRevenue','真实销售额','c'],['totalCost','总产品成本','c'],['totalInvestment','总投入','c'],['platform','平台扣点','p'],['shipping','每单运费','n'],['roas','月投入产出比','c'],['cac','成交成本','c'],['profit','利润','c']
+    ];
+    const inputKeys=new Set(['target','organic','bd','conversion','cpc','commissionRate','costPrice','salePrice','aov','avgCost','platform','shipping']);
+    const numeric=(value,key)=>{const text=String(value).trim();if(text==='')return null;const isPercent=['organic','conversion','platform'].includes(key);const n=Number(text.replace('%',''));if(!Number.isFinite(n))return null;return isPercent?(text.includes('%')||n>1?n/100:n):n};
+    const present=(...vals)=>vals.every(v=>v!==null&&Number.isFinite(v));
+    const calc=(d)=>{
+      const x={...d};
+      x.actual=present(x.target,x.bd)?x.target-x.bd:null;
+      x.paid=present(x.actual,x.organic)?x.actual*(1-x.organic):null;
+      x.paidVisitors=present(x.paid,x.conversion)&&x.conversion!==0?x.paid/x.conversion:null;
+      x.totalVisitors=present(x.paidVisitors,x.organic)&&x.organic!==1?x.paidVisitors/(1-x.organic):null;
+      x.bdCommission=present(x.bd,x.commissionRate)?x.bd*x.commissionRate:null;
+      x.marketing=present(x.paidVisitors,x.cpc)?x.paidVisitors*x.cpc:null;
+      x.totalRevenue=present(x.target,x.aov)?x.target*x.aov:null;
+      x.actualRevenue=present(x.actual,x.aov)?x.actual*x.aov:null;
+      x.totalCost=present(x.actual,x.avgCost)?x.actual*x.avgCost:null;
+      x.totalInvestment=present(x.bdCommission,x.marketing)?x.bdCommission+x.marketing:null;
+      x.roas=present(x.actualRevenue,x.totalInvestment)&&x.totalInvestment!==0?x.actualRevenue/x.totalInvestment:null;
+      x.cac=present(x.totalInvestment,x.actual)&&x.actual!==0?x.totalInvestment/x.actual:null;
+      x.profit=present(x.actualRevenue,x.totalCost,x.totalInvestment,x.totalRevenue,x.platform,x.target,x.shipping)?x.actualRevenue-x.totalCost-x.totalInvestment-x.totalRevenue*x.platform-x.target*x.shipping:null;
+      return x;
+    };
+    const fmt=(key,v)=>{if(v===null||v===undefined||!Number.isFinite(v))return '—';if(['organic','conversion','platform'].includes(key))return `${(v*100).toFixed(2)}%`;if(['target','paid','actual','bd','paidVisitors','totalVisitors'].includes(key))return Math.round(v).toLocaleString('zh-CN');return v.toLocaleString('zh-CN',{maximumFractionDigits:2});};
+    const head=document.getElementById('head'),body=document.getElementById('body'),footer=document.getElementById('footer');
+    const batchFields=document.getElementById('batchFields'),batchRows=document.getElementById('batchRows');
+    const summaryInputKeys=new Set(['commissionRate','costPrice','salePrice','aov','avgCost','platform','shipping']);
+    const summaryRaw={commissionRate:'',costPrice:'',salePrice:'',aov:'',avgCost:'',platform:'',shipping:''};
+    const esc=(value)=>String(value??'').replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+    head.innerHTML=`<tr><th>月份</th>${columns.map(([,label,,])=>`<th>${label}</th>`).join('')}</tr>`;
+    body.innerHTML=months.map((month,row)=>`<tr data-row="${row}"><td><select data-month aria-label="第${row+1}行月份"><option value="">选择</option>${months.map(item=>`<option value="${item}">${item}</option>`).join('')}</select></td>${columns.map(([key,,type])=>inputKeys.has(key)?`<td class="input-cell"><input inputmode="decimal" data-key="${key}" aria-label="第${row+1}行${key}" placeholder="${type==='p'?'例如 2%':'填写'}"></td>`:`<td class="calculated" data-output="${key}">—</td>`).join('')}</tr>`).join('');
+    batchRows.innerHTML=months.map((month,row)=>`<label><input type="checkbox" data-batch-row="${row}" checked>第${row+1}行</label>`).join('');
+    batchFields.innerHTML=columns.filter(([key])=>inputKeys.has(key)).map(([key,label,type])=>`<label>${label}<input inputmode="decimal" data-batch-key="${key}" placeholder="${type==='p'?'例如 2%':'留空不覆盖'}"></label>`).join('');
+    const getRow=(row)=>{const tr=body.querySelector(`[data-row="${row}"]`);const d={};tr.querySelectorAll('input').forEach(i=>d[i.dataset.key]=numeric(i.value,i.dataset.key));return calc(d)};
+    const updateRow=(row)=>{const tr=body.querySelector(`[data-row="${row}"]`);const d=getRow(row);tr.querySelectorAll('[data-output]').forEach(cell=>cell.textContent=fmt(cell.dataset.output,d[cell.dataset.output]));return d};
+    const available=(rows,key)=>rows.filter(d=>d[key]!==null&&Number.isFinite(d[key]));
+    const sum=(rows,key)=>{const values=available(rows,key);return values.length?values.reduce((total,d)=>total+d[key],0):null};
+    const average=(rows,key)=>{const values=available(rows,key);return values.length?values.reduce((total,d)=>total+d[key],0)/values.length:null};
+    const applySummaryInputs=(s)=>{
+      summaryInputKeys.forEach(key=>s[key]=numeric(summaryRaw[key],key));
+      return s;
+    };
+    const summarizeRows=(rows)=>{
+      const filledRows=rows.filter(d=>[...inputKeys].some(key=>d[key]!==null&&Number.isFinite(d[key])));
+      const s={target:sum(rows,'target'),paid:sum(rows,'paid'),actual:sum(rows,'actual'),bd:sum(rows,'bd'),paidVisitors:sum(rows,'paidVisitors'),totalVisitors:sum(rows,'totalVisitors'),bdCommission:sum(rows,'bdCommission'),marketing:sum(rows,'marketing'),totalRevenue:sum(rows,'totalRevenue'),actualRevenue:sum(rows,'actualRevenue'),totalCost:sum(rows,'totalCost'),totalInvestment:sum(rows,'totalInvestment'),profit:sum(rows,'profit')};
+      s.organic=average(rows,'organic');
+      s.conversion=average(rows,'conversion');
+      s.cpc=average(rows,'cpc');
+      s.roas=present(s.actualRevenue,s.marketing)&&s.marketing!==0?s.actualRevenue/s.marketing:null;
+      s.cac=present(s.marketing,s.actual)&&s.actual!==0?s.marketing/s.actual:null;
+      return {filledRows,s:applySummaryInputs(s)};
+    };
+    const renderFooter=(s)=>{
+      const cells=columns.map(([key])=>{
+        if(summaryInputKeys.has(key))return `<td class="input-cell"><input class="summary-input" inputmode="decimal" data-summary-key="${key}" placeholder="手填" value="${esc(summaryRaw[key])}"></td>`;
+        return `<td class="calculated">${fmt(key,s[key])}</td>`;
+      }).join('');
+      footer.innerHTML=`<tr><td>全年汇总</td>${cells}</tr>`;
+    };
+    const updateSummary=()=>{
+      const rows=months.map((_,i)=>updateRow(i));
+      const {filledRows,s}=summarizeRows(rows);
+      renderFooter(s);
+      const items=[['目标总销量','target'],['真实销量','actual'],['付费访客数','paidVisitors'],['总投入','totalInvestment'],['真实销售额','actualRevenue'],['月投入产出比','roas'],['成交成本','cac'],['平台后利润','profit']];
+      document.getElementById('summary').innerHTML=items.map(([label,key])=>`<div class="metric ${key==='profit'?'profit':''}"><span>${label}</span><strong>${fmt(key,s[key])}</strong></div>`).join('');
+      document.getElementById('summaryStatus').textContent=filledRows.length===0?'请填写任意数据后查看汇总':`已汇总 ${filledRows.length} 个有填写数据的月份（1–12月）`;
+    };
+    const excelColumn=(index)=>{let value=index,name='';while(value>0){const remainder=(value-1)%26;name=String.fromCharCode(65+remainder)+name;value=Math.floor((value-1)/26)}return name};
+    const excelFormula=(key,row)=>{
+      const c=(name)=>excelColumn(columns.findIndex(([columnKey])=>columnKey===name)+2);
+      const ref=(name)=>`${c(name)}${row}`;
+      const pairs={
+        actual:`IF(OR(${ref('target')}="",${ref('bd')}=""),"",${ref('target')}-${ref('bd')})`,
+        paid:`IF(OR(${ref('actual')}="",${ref('organic')}=""),"",${ref('actual')}*(1-${ref('organic')}))`,
+        paidVisitors:`IF(OR(${ref('paid')}="",${ref('conversion')}="",${ref('conversion')}=0),"",${ref('paid')}/${ref('conversion')})`,
+        totalVisitors:`IF(OR(${ref('paidVisitors')}="",${ref('organic')}="",${ref('organic')}=1),"",${ref('paidVisitors')}/(1-${ref('organic')}))`,
+        bdCommission:`IF(OR(${ref('bd')}="",${ref('commissionRate')}=""),"",${ref('bd')}*${ref('commissionRate')})`,
+        marketing:`IF(OR(${ref('paidVisitors')}="",${ref('cpc')}=""),"",${ref('paidVisitors')}*${ref('cpc')})`,
+        totalRevenue:`IF(OR(${ref('target')}="",${ref('aov')}=""),"",${ref('target')}*${ref('aov')})`,
+        actualRevenue:`IF(OR(${ref('actual')}="",${ref('aov')}=""),"",${ref('actual')}*${ref('aov')})`,
+        totalCost:`IF(OR(${ref('actual')}="",${ref('avgCost')}=""),"",${ref('actual')}*${ref('avgCost')})`,
+        totalInvestment:`IF(OR(${ref('bdCommission')}="",${ref('marketing')}=""),"",${ref('bdCommission')}+${ref('marketing')})`,
+        roas:`IF(OR(${ref('actualRevenue')}="",${ref('totalInvestment')}="",${ref('totalInvestment')}=0),"",${ref('actualRevenue')}/${ref('totalInvestment')})`,
+        cac:`IF(OR(${ref('totalInvestment')}="",${ref('actual')}="",${ref('actual')}=0),"",${ref('totalInvestment')}/${ref('actual')})`,
+        profit:`IF(OR(${ref('actualRevenue')}="",${ref('totalCost')}="",${ref('totalInvestment')}="",${ref('totalRevenue')}="",${ref('platform')}="",${ref('target')}="",${ref('shipping')}=""),"",${ref('actualRevenue')}-${ref('totalCost')}-${ref('totalInvestment')}-${ref('totalRevenue')}*${ref('platform')}-${ref('target')}*${ref('shipping')})`
+      };
+      return pairs[key]||null;
+    };
+    const excelSummaryFormula=(key,startRow,endRow,summaryRow)=>{
+      const column=excelColumn(columns.findIndex(([columnKey])=>columnKey===key)+2);
+      const range=`${column}${startRow}:${column}${endRow}`;
+      const sums=new Set(['target','paid','actual','bd','paidVisitors','totalVisitors','bdCommission','marketing','totalRevenue','actualRevenue','totalCost','totalInvestment','profit']);
+      if(sums.has(key))return `SUM(${range})`;
+      if(['organic','conversion','cpc'].includes(key))return `IF(COUNT(${range})=0,"",AVERAGE(${range}))`;
+      if(key==='roas')return `IF(OR(S${summaryRow}="",L${summaryRow}="",L${summaryRow}=0),"",S${summaryRow}/L${summaryRow})`;
+      if(key==='cac')return `IF(OR(L${summaryRow}="",E${summaryRow}="",E${summaryRow}=0),"",L${summaryRow}/E${summaryRow})`;
+      return null;
+    };
+    const excelNumberFormat=(key)=>['organic','conversion','platform'].includes(key)?'0.00%':['target','paid','actual','bd','paidVisitors','totalVisitors'].includes(key)?'#,##0':['roas','cac'].includes(key)?'0.00':'#,##0.00';
+    const exportXlsx=async()=>{
+      const button=document.getElementById('exportXlsx'),status=document.getElementById('exportStatus');
+      if(!window.ExcelJS){status.textContent='导出组件尚未加载，请稍后重试。';return}
+      button.disabled=true;status.textContent='正在生成 Excel…';
+      try{
+        updateSummary();
+        const monthlyRows=months.map((_,index)=>{const tr=body.querySelector(`[data-row="${index}"]`);return {month:tr.querySelector('select').value,d:getRow(index)}});
+        const {s}=summarizeRows(monthlyRows.map(item=>item.d));
+        const workbook=new ExcelJS.Workbook();
+        workbook.creator='李煌科技';workbook.created=new Date();
+        const worksheet=workbook.addWorksheet('月度测算');
+        worksheet.views=[{state:'frozen',xSplit:1,ySplit:3,showGridLines:false}];
+        const totalColumns=columns.length+1,startRow=4,endRow=startRow+monthlyRows.length-1,summaryRow=endRow+1;
+        const color=(hex)=>({argb:`FF${hex.replace('#','')}`});
+        const border={top:{style:'thin',color:color('#DBE5DF')},left:{style:'thin',color:color('#DBE5DF')},bottom:{style:'thin',color:color('#DBE5DF')},right:{style:'thin',color:color('#DBE5DF')}};
+        const styleCell=(cell,fill,bold=false,alignment='right')=>{cell.fill={type:'pattern',pattern:'solid',fgColor:color(fill)};cell.font={name:'Arial',size:10,bold,color:color('#18352B')};cell.alignment={horizontal:alignment,vertical:'middle'};cell.border=border};
+        worksheet.mergeCells(1,1,1,totalColumns);
+        const title=worksheet.getCell(1,1);title.value='推广方案利润测算';title.fill={type:'pattern',pattern:'solid',fgColor:color('#174238')};title.font={name:'Arial',size:16,bold:true,color:color('#FFFFFF')};title.alignment={horizontal:'left',vertical:'middle'};
+        worksheet.mergeCells(2,1,2,totalColumns);
+        const note=worksheet.getCell(2,1);note.value='浅黄色为手动填写项，浅绿色为自动计算项。导出文件保留公式，打开后可继续编辑并自动重算。';note.fill={type:'pattern',pattern:'solid',fgColor:color('#F5F8F6')};note.font={name:'Arial',size:10,italic:true,color:color('#66776F')};note.alignment={horizontal:'left',vertical:'middle'};
+        worksheet.getRow(1).height=30;worksheet.getRow(2).height=22;
+        const headers=['月份',...columns.map(([,label])=>label)];
+        headers.forEach((label,index)=>{const cell=worksheet.getCell(3,index+1);cell.value=label;cell.fill={type:'pattern',pattern:'solid',fgColor:color('#174238')};cell.font={name:'Arial',size:10,bold:true,color:color('#FFFFFF')};cell.alignment={horizontal:'center',vertical:'middle',wrapText:true};cell.border=border});
+        worksheet.getRow(3).height=34;
+        monthlyRows.forEach(({month,d},index)=>{
+          const row=startRow+index;
+          const monthCell=worksheet.getCell(row,1);monthCell.value=month||null;styleCell(monthCell,'#FFFFFF',true,'center');
+          columns.forEach(([key],columnIndex)=>{
+            const cell=worksheet.getCell(row,columnIndex+2);const formula=excelFormula(key,row);
+            if(inputKeys.has(key))cell.value=d[key]??null;
+            else cell.value={formula,result:d[key]??''};
+            styleCell(cell,inputKeys.has(key)?'#FFF7D6':'#EEF7F2',!inputKeys.has(key));cell.numFmt=excelNumberFormat(key);
+          });
+          worksheet.getRow(row).height=22;
+        });
+        const summaryLabel=worksheet.getCell(summaryRow,1);summaryLabel.value='全年汇总';styleCell(summaryLabel,'#FFE9A2',true,'center');
+        columns.forEach(([key],columnIndex)=>{
+          const cell=worksheet.getCell(summaryRow,columnIndex+2);const formula=excelSummaryFormula(key,startRow,endRow,summaryRow);
+          if(summaryInputKeys.has(key))cell.value=s[key]??null;
+          else cell.value={formula,result:s[key]??''};
+          styleCell(cell,summaryInputKeys.has(key)?'#FFF7D6':'#E8F4ED',true);cell.numFmt=excelNumberFormat(key);
+        });
+        worksheet.getRow(summaryRow).height=24;
+        for(let index=1;index<=totalColumns;index+=1)worksheet.getColumn(index).width=index===1?12:18;
+        const buffer=await workbook.xlsx.writeBuffer();
+        const blob=new Blob([buffer],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+        const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download=`推广方案利润测算_${new Date().toISOString().slice(0,10)}.xlsx`;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(link.href),1000);
+        status.textContent='Excel 已导出，保留填写数据、计算结果与表格样式。';
+      }catch(error){console.error(error);status.textContent='导出未完成，请稍后重试。'}finally{button.disabled=false}
+    };
+    body.addEventListener('input',updateSummary);
+    footer.addEventListener('input',event=>{if(event.target.dataset.summaryKey){summaryRaw[event.target.dataset.summaryKey]=event.target.value;updateSummary()}});
+    document.getElementById('exportXlsx').addEventListener('click',exportXlsx);
+    document.getElementById('selectAllRows').addEventListener('click',()=>batchRows.querySelectorAll('input').forEach(i=>i.checked=true));
+    document.getElementById('clearRowSelection').addEventListener('click',()=>batchRows.querySelectorAll('input').forEach(i=>i.checked=false));
+    document.getElementById('applyBatch').addEventListener('click',()=>{const rows=[...batchRows.querySelectorAll('input:checked')].map(i=>Number(i.dataset.batchRow));const values=[...batchFields.querySelectorAll('input')].filter(i=>i.value.trim()!=='');if(!rows.length||!values.length){document.getElementById('batchStatus').textContent='请选择至少一行，并填写至少一个字段。';return}rows.forEach(row=>{const tr=body.querySelector(`[data-row="${row}"]`);values.forEach(i=>tr.querySelector(`[data-key="${i.dataset.batchKey}"]`).value=i.value)});document.getElementById('batchStatus').textContent=`已将 ${values.length} 个字段应用到 ${rows.length} 行。`;updateSummary()});
+    document.getElementById('clear').addEventListener('click',()=>{body.querySelectorAll('input').forEach(i=>i.value='');body.querySelectorAll('select').forEach(i=>i.value='');batchFields.querySelectorAll('input').forEach(i=>i.value='');Object.keys(summaryRaw).forEach(key=>summaryRaw[key]='');document.getElementById('batchStatus').textContent='请选择行并填写需要批量应用的字段。';updateSummary()});
+    document.getElementById('example').addEventListener('click',()=>{const data={target:200,organic:'36%',bd:120,conversion:'2%',cpc:4.5,commissionRate:11,costPrice:90,salePrice:159,aov:234,avgCost:144,platform:'2%',shipping:5};const first=body.querySelector('[data-row="0"]');first.querySelector('select').value='1月';Object.entries(data).forEach(([key,value])=>first.querySelector(`[data-key="${key}"]`).value=value);updateSummary()});
+    updateSummary();
+  </script>
+</body>
+</html>
