@@ -6,7 +6,7 @@
   <meta name="description" content="聊天记录分析及客服质检 skill 文件下载">
   <title>skill下载 · 李煌科技</title>
   <style>
-    :root{color-scheme:light;--ink:#18352b;--muted:#65766f;--line:#dbe5df;--paper:#f7faf8;--accent:#1f7a54;--accent-dark:#15563d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.page{width:min(760px,calc(100% - 40px));margin:0 auto;padding:56px 0 72px}.back{color:var(--accent);text-decoration:none;font-weight:650}.back:hover{text-decoration:underline}.card{margin-top:28px;padding:34px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 16px 42px rgba(23,57,43,.08)}.tag{margin:0;color:var(--accent);font-size:14px;font-weight:700;letter-spacing:.08em}h1{margin:10px 0 12px;font-size:clamp(28px,5vw,42px);line-height:1.18}h2{margin:32px 0 14px;font-size:21px;line-height:1.35}p{margin:0 0 14px;color:var(--muted)}.download{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;padding:13px 21px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}.download:hover{background:var(--accent-dark)}.demo{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:0 8px 22px rgba(23,57,43,.08)}.meta{margin-top:26px;color:#85938d;font-size:13px;word-break:break-all}@media (max-width:520px){.page{width:min(100% - 28px,760px);padding-top:32px}.card{padding:24px}}
+    :root{color-scheme:light;--ink:#18352b;--muted:#65766f;--line:#dbe5df;--paper:#f7faf8;--accent:#1f7a54;--accent-dark:#15563d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.page{width:min(980px,calc(100% - 40px));margin:0 auto;padding:56px 0 72px}.back{color:var(--accent);text-decoration:none;font-weight:650}.back:hover{text-decoration:underline}.card{margin-top:28px;padding:34px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 16px 42px rgba(23,57,43,.08)}.tag{margin:0;color:var(--accent);font-size:14px;font-weight:700;letter-spacing:.08em}h1{margin:10px 0 12px;font-size:clamp(28px,5vw,42px);line-height:1.18}h2{margin:32px 0 14px;font-size:21px;line-height:1.35}h3{margin:20px 0 8px;font-size:16px}p{margin:0 0 14px;color:var(--muted)}.download{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;padding:13px 21px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}.download:hover{background:var(--accent-dark)}.demo{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:0 8px 22px rgba(23,57,43,.08)}.demo-caption{margin:7px 0 20px;font-size:14px}.meta{margin-top:26px;color:#85938d;font-size:13px;word-break:break-all}@media (max-width:520px){.page{width:min(100% - 28px,980px);padding-top:32px}.card{padding:24px}}
   </style>
 </head>
 <body>
@@ -20,6 +20,23 @@
       <h2>客服质检分析提示词演示</h2>
       <img class="demo" src="assets/customer-quality-prompt-demo.png" alt="客服质检分析提示词演示截图">
       <p class="meta">文件格式：.skill · 文件大小：约 6.5 KB<br>SHA-256：5b553343a960474f35fd38c58afd06e5688f0d6ad84b54d9414a0fdade63d96c</p>
+    </section>
+    <section class="card">
+      <p class="tag">SKILL FILE</p>
+      <h1>天猫商品数据调拨（周度对比）</h1>
+      <p>使用前需在千问中通过淘宝连接器绑定店铺。该 skill 仅适用于淘系千牛店铺，可调取单品详细数据及该商品 ID 下的全部推广计划数据，并进行周度数据对比。</p>
+      <a class="download" href="/downloads/天猫商品数据调拨.skill" download="天猫商品数据调拨.skill">下载天猫商品数据调拨</a>
+      <h2>操作步骤及提示词演示</h2>
+      <h3>1. 在千问中绑定淘宝连接器</h3>
+      <img class="demo" src="assets/tmall-connector-setup.png" alt="千问淘宝连接器绑定店铺步骤截图">
+      <p class="demo-caption">进入连接器页面，完成淘宝天猫商家端的店铺绑定。</p>
+      <h3>2. 输入商品 ID 发起调拨</h3>
+      <img class="demo" src="assets/tmall-item-data-prompt.png" alt="天猫商品数据调拨提示词示例截图">
+      <p class="demo-caption">在提示词中填入需要查询的商品 ID。</p>
+      <h3>3. 查看周度数据对比结果</h3>
+      <img class="demo" src="assets/tmall-weekly-comparison-report.png" alt="单品与推广计划周度数据对比示例截图">
+      <p class="demo-caption">结果会呈现单品经营数据与商品 ID 下推广计划的周度对比。</p>
+      <p class="meta">文件格式：.skill · 文件大小：约 5.1 KB<br>SHA-256：b0c172d5e5a030dbc82f80d4fd4762fc256a366475ba7f1f6aa2c2b36c72486e</p>
     </section>
   </main>
 </body>
